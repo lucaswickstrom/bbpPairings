@@ -79,10 +79,10 @@ namespace
 
   void relativizePath(std::string &filename, const std::string &pathBase)
   {
-    if (!std::filesystem::path(filename).has_parent_path())
+    if (!std::__fs::filesystem::path(filename).has_parent_path())
     {
       filename =
-        std::filesystem::path(pathBase).replace_filename(filename).string();
+        std::__fs::filesystem::path(pathBase).replace_filename(filename).string();
     }
   }
 
@@ -98,7 +98,7 @@ namespace
     else
     {
       checklistFilename =
-        std::filesystem::path(baseFilename).replace_extension("list").string();
+        std::__fs::filesystem::path(baseFilename).replace_extension("list").string();
     }
   }
 
@@ -125,7 +125,7 @@ namespace
         result.reset();
       }
     }
-    catch (const std::filesystem::filesystem_error &)
+    catch (const std::__fs::filesystem::filesystem_error &)
     {
       std::cerr
         << "Error inferring the path to the checklist."
@@ -407,7 +407,7 @@ int main(const int argc, char**const argv)
             tournament,
             swissSystem,
             checklistStream.get(),
-            std::filesystem::path(inputFilename).stem().string());
+            std::__fs::filesystem::path(inputFilename).stem().string());
         }
         catch (const swisssystems::UnapplicableFeatureException &exception)
         {
@@ -522,7 +522,7 @@ int main(const int argc, char**const argv)
           {
             relativizePath(outputFilename, inputFilename);
           }
-          catch (const std::filesystem::filesystem_error &)
+          catch (const std::__fs::filesystem::filesystem_error &)
           {
             std::cerr
               << "Error extracting the directory of the input file."
@@ -846,7 +846,7 @@ int main(const int argc, char**const argv)
           {
             relativizePath(outputFilename, inputFilename);
           }
-          catch (const std::filesystem::filesystem_error &)
+          catch (const std::__fs::filesystem::filesystem_error &)
           {
             std::cerr
               << "Error extracting the directory of the input file."
